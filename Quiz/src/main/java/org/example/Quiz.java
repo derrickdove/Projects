@@ -67,7 +67,7 @@ public class Quiz implements ActionListener{
         textArea.setFont(new Font("MV Boli", Font.BOLD,25));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
-        textArea.setText("Same Text ");
+
 
 
         buttonA.setBounds(0,100,100,100);
@@ -101,25 +101,25 @@ public class Quiz implements ActionListener{
         answerLabelA.setBackground(new Color(220,223,228));
         answerLabelA.setForeground(new Color(25,255,0));
         answerLabelA.setFont(new Font("MV Boli", Font.PLAIN,35));
-        answerLabelA.setText("Test labels");
+
 
         answerLabelB.setBounds(125,200,500,100);
         answerLabelB.setBackground(new Color(220,223,228));
         answerLabelB.setForeground(new Color(25,255,0));
         answerLabelB.setFont(new Font("MV Boli", Font.PLAIN,35));
-        answerLabelB.setText("Test labels");
+
 
         answerLabelC.setBounds(125,300,500,100);
         answerLabelC.setBackground(new Color(220,223,228));
         answerLabelC.setForeground(new Color(25,255,0));
         answerLabelC.setFont(new Font("MV Boli", Font.PLAIN,35));
-        answerLabelC.setText("Test labels");
+
 
         answerLabelD.setBounds(125,400,500,100);
         answerLabelD.setBackground(new Color(220,223,228));
         answerLabelD.setForeground(new Color(25,255,0));
         answerLabelD.setFont(new Font("MV Boli", Font.PLAIN,35));
-        answerLabelD.setText("Test labels");
+      
 
         frame.add(answerLabelA);
         frame.add(answerLabelB);
