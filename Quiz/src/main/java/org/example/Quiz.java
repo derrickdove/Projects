@@ -131,6 +131,25 @@ public class Quiz implements ActionListener{
         secondsLeft.setText(String.valueOf(seconds));
 
 
+      numberRight.setBounds(225,225,200,100);
+      numberRight.setBackground(new Color(25,25,25));
+      numberRight.setForeground(new Color(25,255,0));
+      numberRight.setFont(new Font("Ink Free",Font.BOLD,50));
+      numberRight.setBorder(BorderFactory.createBevelBorder(1));
+      numberRight.setHorizontalAlignment(JTextField.CENTER);
+      numberRight.setEditable(false);
+
+
+      percentage.setBounds(225,325,200,100);
+      percentage.setBackground(new Color(25,25,25));
+      percentage.setForeground(new Color(25,255,0));
+      percentage.setFont(new Font("Ink Free",Font.BOLD,50));
+      percentage.setBorder(BorderFactory.createBevelBorder(1));
+      percentage.setHorizontalAlignment(JTextField.CENTER);
+      percentage.setEditable(false);
+
+
+
         frame.add(secondsLeft);  // ---------------------------------------//
         frame.add(answerLabelA);
         frame.add(answerLabelB);
@@ -138,7 +157,7 @@ public class Quiz implements ActionListener{
         frame.add(answerLabelD);
 
 
-        frame.add(buttonA);  
+        frame.add(buttonA);
         frame.add(buttonB);
         frame.add(buttonC);
         frame.add(buttonD);  // --------Adds to the frame ---------------//
@@ -146,7 +165,14 @@ public class Quiz implements ActionListener{
         frame.add(textArea);
         frame.add(textField);  // ---------------------------------------//
         frame.setVisible(true);
+
+        nextQuestion();
     }
+
+
+
+
+
     public void nextQuestion(){
 
     }
