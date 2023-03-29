@@ -119,15 +119,26 @@ public class Quiz implements ActionListener{
         answerLabelD.setBackground(new Color(220,223,228));
         answerLabelD.setForeground(new Color(25,255,0));
         answerLabelD.setFont(new Font("MV Boli", Font.PLAIN,35));
-      
 
+
+        secondsLeft.setBounds(535,510,100,100);
+        secondsLeft.setBackground(new Color(25,25,25));
+        secondsLeft.setForeground(new Color(255,0,0));
+        secondsLeft.setFont(new Font("Ink Free",Font.BOLD,60));
+        secondsLeft.setBorder(BorderFactory.createBevelBorder(1));
+        secondsLeft.setOpaque(true);
+        secondsLeft.setHorizontalAlignment(JTextField.CENTER);
+        secondsLeft.setText(String.valueOf(seconds));
+
+
+        frame.add(secondsLeft);  // ---------------------------------------//
         frame.add(answerLabelA);
         frame.add(answerLabelB);
         frame.add(answerLabelC);
         frame.add(answerLabelD);
 
 
-        frame.add(buttonA);  // ---------------------------------------//
+        frame.add(buttonA);  
         frame.add(buttonB);
         frame.add(buttonC);
         frame.add(buttonD);  // --------Adds to the frame ---------------//
