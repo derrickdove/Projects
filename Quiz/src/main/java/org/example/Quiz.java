@@ -4,16 +4,29 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Quiz implements ActionListener{
-    String[] questions = { "Which is a principle of OOP?", "Test","Test Test"
+    String[] questions = {
+            "What is Inheritance?",
+            "Which is not a concept of OOP?",
+            "Anything wrong with this loop? for(i=0: i<3; i++)",
+            "What is Encapsulation?",
+            "What are Objects?"
                          }; // hold all questions
 
    String[][] options = {
-                                    {"Test1", "Test2", "Test3", "Test4"},
-                                    {"Test1", "Test2", "Test3", "Test4"},
-                                    {"Test1", "Test2", "Test3", "Test4"},
+                                    {"Usage of one thing in multiple ways", "Acquiring properties from one class to other classes",
+                                            "Using private properties and public methods", "A class that can implement more than one interface"},
+
+                                    {"Polymorphism", "Inheritance", "Encapsulation", "Interfaces"},
+
+                                    {"nothing", "Needs: ; ", "Needs: )", "Needs: } "},
+
+                                     {"Binds together the data and code into a single unit ","Instances of a class","Performs a single action in different ways",
+                                             "Refers to the relationship between two classes"},
+
+                                              {" How methods of a class are meaningfully related","block of code grouped together","Instances of a class", "Method used to compare" }
                         }; // contains quiz options
     char[] answers = {
-            'A','B','C'
+            'B','D','B','A','C'
                      };
    char guess;
    char answer;
@@ -40,7 +53,17 @@ public class Quiz implements ActionListener{
    JTextField percentage = new JTextField();
 
 
+    Timer timer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            seconds--;
+            secondsLeft.setText(String.valueOf(seconds));
+            if(seconds <= 0){
+                displayAnswer();
+            }
 
+        }
+    });
 
 
 
@@ -54,7 +77,7 @@ public class Quiz implements ActionListener{
         textField.setBounds(0,0,650,50);
         textField.setBackground(new Color(25,25,25));
         textField.setForeground(new Color(25,225,0));
-        textField.setFont(new Font("Ink Free", Font.BOLD,30));
+        textField.setFont(new Font("Ink Free", Font.BOLD,35));
         textField.setBorder(BorderFactory.createBevelBorder(1));
         textField.setHorizontalAlignment(JTextField.CENTER);
         textField.setEditable(false);
@@ -101,25 +124,25 @@ public class Quiz implements ActionListener{
         answerLabelA.setBounds(125,100,500,100);
         answerLabelA.setBackground(new Color(220,223,228));
         answerLabelA.setForeground(new Color(25,25,25));
-        answerLabelA.setFont(new Font("MV Boli", Font.PLAIN,35));
+        answerLabelA.setFont(new Font("MV Boli", Font.BOLD,18));
 
 
         answerLabelB.setBounds(125,200,500,100);
         answerLabelB.setBackground(new Color(220,223,228));
         answerLabelB.setForeground(new Color(25,25,25));
-        answerLabelB.setFont(new Font("MV Boli", Font.PLAIN,35));
+        answerLabelB.setFont(new Font("MV Boli", Font.BOLD,18));
 
 
         answerLabelC.setBounds(125,300,500,100);
         answerLabelC.setBackground(new Color(220,223,228));
         answerLabelC.setForeground(new Color(25,25,25));
-        answerLabelC.setFont(new Font("MV Boli", Font.PLAIN,35));
+        answerLabelC.setFont(new Font("MV Boli", Font.BOLD,18));
 
 
         answerLabelD.setBounds(125,400,500,100);
         answerLabelD.setBackground(new Color(220,223,228));
         answerLabelD.setForeground(new Color(25,25,25));
-        answerLabelD.setFont(new Font("MV Boli", Font.PLAIN,35));
+        answerLabelD.setFont(new Font("MV Boli", Font.BOLD,18));
 
 
         secondsLeft.setBounds(535,510,100,100);
@@ -184,10 +207,14 @@ public class Quiz implements ActionListener{
           answerLabelB.setText(options[index][1]);
           answerLabelC.setText(options[index][2]);
           answerLabelD.setText(options[index][3]);
+
+          timer.start();
       }
     }
 
     public void displayAnswer() {   // displays the answer
+
+        timer.stop();
         buttonA.setEnabled(false);
         buttonB.setEnabled(false);
         buttonC.setEnabled(false);
@@ -238,7 +265,7 @@ public class Quiz implements ActionListener{
 
 
             textField.setText("SCORE!" );
-      
+
 
 
         textArea.setText("");
