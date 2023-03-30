@@ -16,6 +16,7 @@ public class Quiz implements ActionListener{
             'A','B','C'
                      };
    char guess;
+   char answer;
    int index;
    int correctGuess = 0;
    int totalQuestion = questions.length; // keeps the program dynamic with the ".length". I can add and remove questions
@@ -46,13 +47,13 @@ public class Quiz implements ActionListener{
     public Quiz() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650,650);
-        frame.getContentPane().setBackground(new Color(220,223,228)); // sets background color
+        frame.getContentPane().setBackground(new Color(220,223,250)); // sets background color
         frame.setLayout(null);
         frame.setResizable(false);
 
         textField.setBounds(0,0,650,50);
         textField.setBackground(new Color(25,25,25));
-        textField.setForeground(new Color(25,100,0));
+        textField.setForeground(new Color(25,225,0));
         textField.setFont(new Font("Ink Free", Font.BOLD,30));
         textField.setBorder(BorderFactory.createBevelBorder(1));
         textField.setHorizontalAlignment(JTextField.CENTER);
@@ -99,30 +100,30 @@ public class Quiz implements ActionListener{
 
         answerLabelA.setBounds(125,100,500,100);
         answerLabelA.setBackground(new Color(220,223,228));
-        answerLabelA.setForeground(new Color(25,255,0));
+        answerLabelA.setForeground(new Color(25,25,25));
         answerLabelA.setFont(new Font("MV Boli", Font.PLAIN,35));
 
 
         answerLabelB.setBounds(125,200,500,100);
         answerLabelB.setBackground(new Color(220,223,228));
-        answerLabelB.setForeground(new Color(25,255,0));
+        answerLabelB.setForeground(new Color(25,25,25));
         answerLabelB.setFont(new Font("MV Boli", Font.PLAIN,35));
 
 
         answerLabelC.setBounds(125,300,500,100);
         answerLabelC.setBackground(new Color(220,223,228));
-        answerLabelC.setForeground(new Color(25,255,0));
+        answerLabelC.setForeground(new Color(25,25,25));
         answerLabelC.setFont(new Font("MV Boli", Font.PLAIN,35));
 
 
         answerLabelD.setBounds(125,400,500,100);
         answerLabelD.setBackground(new Color(220,223,228));
-        answerLabelD.setForeground(new Color(25,255,0));
+        answerLabelD.setForeground(new Color(25,25,25));
         answerLabelD.setFont(new Font("MV Boli", Font.PLAIN,35));
 
 
         secondsLeft.setBounds(535,510,100,100);
-        secondsLeft.setBackground(new Color(25,25,25));
+        secondsLeft.setBackground(new Color(220,223,250));
         secondsLeft.setForeground(new Color(255,0,0));
         secondsLeft.setFont(new Font("Ink Free",Font.BOLD,60));
         secondsLeft.setBorder(BorderFactory.createBevelBorder(1));
@@ -174,19 +175,112 @@ public class Quiz implements ActionListener{
 
 
     public void nextQuestion(){
-
+      if(index >= totalQuestion) {
+          results();
+      } else {
+          textField.setText("Question " + (index+1));
+          textArea.setText(questions[index]);
+          answerLabelA.setText(options[index][0]);
+          answerLabelB.setText(options[index][1]);
+          answerLabelC.setText(options[index][2]);
+          answerLabelD.setText(options[index][3]);
+      }
     }
 
     public void displayAnswer() {   // displays the answer
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
+
+        if(answers[index] != 'A')
+            answerLabelA.setForeground(new Color(255,0,0));       // sets incorrect answer to red
+        if(answers[index] != 'B')
+            answerLabelB.setForeground(new Color(255,0,0));
+        if(answers[index] != 'C')
+            answerLabelC.setForeground(new Color(255,0,0));
+        if(answers[index] != 'D')
+            answerLabelD.setForeground(new Color(255,0,0));
+
+        Timer pause = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answerLabelA.setForeground(new Color(25,25,25));
+                answerLabelB.setForeground(new Color(25,25,25));
+                answerLabelC.setForeground(new Color(25,25,25));
+                answerLabelD.setForeground(new Color(25,25,25));
+
+                answer = ' ';
+                seconds=10;
+                secondsLeft.setText(String.valueOf(seconds));
+                buttonA.setEnabled(true);
+                buttonB.setEnabled(true);
+                buttonC.setEnabled(true);
+                buttonD.setEnabled(true);
+                index++;
+                nextQuestion();
+            }
+        });
+
+         pause.setRepeats(false);
+         pause.start();
 
     }
     public void results(){ // method for the results
+
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
+
+        result = (int)(correctGuess/(double)totalQuestion * 100);
+
+
+
+            textField.setText("SCORE!" );
+      
+
+
+        textArea.setText("");
+        answerLabelA.setText("");
+        answerLabelB.setText("");
+        answerLabelC.setText("");
+        answerLabelD.setText("");
+
+        numberRight.setText("(" + correctGuess + "/" + totalQuestion + ")");
+        percentage.setText(result + "%");
+
+        frame.add(percentage);
+        frame.add(numberRight);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
 
+        if(e.getSource() == buttonA){
+            answer ='A';
+            correctGuess++;
+        }
+        if(e.getSource() == buttonB){
+            answer ='B';
+            correctGuess++;
+        }
+        if(e.getSource() == buttonC){
+            answer ='C';
+            correctGuess++;
+        }
+        if(e.getSource() == buttonD){
+            answer ='D';
+            correctGuess++;
+        }
+          displayAnswer();
     }
+
 }
 
 
