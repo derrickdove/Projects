@@ -7,7 +7,7 @@ public class Quiz implements ActionListener{
     String[] questions = {
             "What is Inheritance?",
             "Which is not a concept of OOP?",
-            "Anything wrong with this loop? for(i=0: i<3; i++)",
+            "Anything wrong with this loop? for(int i=0: i<3; i++)",
             "What is Encapsulation?",
             "What are Objects?"
                          }; // hold all questions
